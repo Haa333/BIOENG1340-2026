@@ -14,4 +14,4 @@ Worked answers to the MRI image-formation quiz (all 7 questions; the quiz asks f
 - [Open in Google Colab](https://colab.research.google.com/github/menonpg/BIOENG1340-2026/blob/main/Week06/QuizSolutions.ipynb) — run it in the browser
 - [Download .ipynb](https://raw.githubusercontent.com/menonpg/BIOENG1340-2026/main/Week06/QuizSolutions.ipynb)
 
-[← Week 06 — MRI Image Formation: Quiz Solutions](week06.md) · [All notebooks](notebooks.md) · [Home](index.md)
+<p class="backlinks"><a href="{{ '/week06/' | relative_url }}">← Week06</a> · <a href="{{ '/notebooks/' | relative_url }}">All notebooks</a> · <a href="{{ '/' | relative_url }}">Home</a></p>

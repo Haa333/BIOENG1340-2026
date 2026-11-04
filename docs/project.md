@@ -74,4 +74,4 @@ Nov 1**, final **Nov 3**. Everyone posts their **Kanban board** link in the clas
 
 [Browse the project folder on GitHub](https://github.com/menonpg/BIOENG1340-2026/tree/main/Project)
 
-[← Home](index.md)
+<p class="backlinks"><a href="{{ '/' | relative_url }}">← Home</a></p>

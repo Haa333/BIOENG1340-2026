@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} &middot; {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ site.description | strip_newlines }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <script>window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']] }, options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] } };</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="{{ '/' | relative_url }}">BIOENG&nbsp;1340/2340</a>
+      <nav class="nav-links">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/notebooks/' | relative_url }}">Notebooks</a>
+        <a href="{{ '/project/' | relative_url }}">Project</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+        <a class="nav-gh" href="https://github.com/menonpg/BIOENG1340-2026" target="_blank" rel="noopener">GitHub &#8599;</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% unless page.hero %}<h1 class="page-title">{{ page.title }}</h1>{% endunless %}
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="foot-inner">
+      <span>BIOENG 1340/2340 &mdash; Medical Image Processing &amp; Analysis</span>
+      <span>Instructor &middot; Prahlad Menon, PhD, PMP</span>
+    </div>
+  </footer>
+</body>
+</html>

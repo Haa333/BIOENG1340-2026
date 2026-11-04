@@ -14,4 +14,4 @@ The **Larmor equation** relates the precession (resonance) frequency of a spin t
 - [Open in Google Colab](https://colab.research.google.com/github/menonpg/BIOENG1340-2026/blob/main/Week05/GyromagneticRatio.ipynb) — run it in the browser
 - [Download .ipynb](https://raw.githubusercontent.com/menonpg/BIOENG1340-2026/main/Week05/GyromagneticRatio.ipynb)
 
-[← Week 05 — MR Physics: Larmor, Bloch Equations & Slice Selection](week05.md) · [All notebooks](notebooks.md) · [Home](index.md)
+<p class="backlinks"><a href="{{ '/week05/' | relative_url }}">← Week05</a> · <a href="{{ '/notebooks/' | relative_url }}">All notebooks</a> · <a href="{{ '/' | relative_url }}">Home</a></p>

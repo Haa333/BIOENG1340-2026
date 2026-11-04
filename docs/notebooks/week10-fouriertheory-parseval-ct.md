@@ -14,4 +14,4 @@ CT reconstruction is, at heart, a **Fourier** problem. This notebook builds the 
 - [Open in Google Colab](https://colab.research.google.com/github/menonpg/BIOENG1340-2026/blob/main/Week10/FourierTheory_Parseval_CT.ipynb) — run it in the browser
 - [Download .ipynb](https://raw.githubusercontent.com/menonpg/BIOENG1340-2026/main/Week10/FourierTheory_Parseval_CT.ipynb)
 
-[← Week 10 — CT Image Formation & Reconstruction](week10.md) · [All notebooks](notebooks.md) · [Home](index.md)
+<p class="backlinks"><a href="{{ '/week10/' | relative_url }}">← Week10</a> · <a href="{{ '/notebooks/' | relative_url }}">All notebooks</a> · <a href="{{ '/' | relative_url }}">Home</a></p>

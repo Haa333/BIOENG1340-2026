@@ -14,4 +14,4 @@ This notebook illustrates the imaging lesson on **signal-to-noise ratio (SNR)** 
 - [Open in Google Colab](https://colab.research.google.com/github/menonpg/BIOENG1340-2026/blob/main/Week04/OptimizingSNR_CNR.ipynb) — run it in the browser
 - [Download .ipynb](https://raw.githubusercontent.com/menonpg/BIOENG1340-2026/main/Week04/OptimizingSNR_CNR.ipynb)
 
-[← Week 04 — SNR & CNR](week04.md) · [All notebooks](notebooks.md) · [Home](index.md)
+<p class="backlinks"><a href="{{ '/week04/' | relative_url }}">← Week04</a> · <a href="{{ '/notebooks/' | relative_url }}">All notebooks</a> · <a href="{{ '/' | relative_url }}">Home</a></p>

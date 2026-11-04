@@ -14,4 +14,4 @@ Introduction to **X-ray imaging** and **computed tomography (CT)**: radiographs 
 - [Open in Google Colab](https://colab.research.google.com/github/menonpg/BIOENG1340-2026/blob/main/Week08/XrayCT_ImageFormation.ipynb) — run it in the browser
 - [Download .ipynb](https://raw.githubusercontent.com/menonpg/BIOENG1340-2026/main/Week08/XrayCT_ImageFormation.ipynb)
 
-[← Week 08 — X-ray & CT Image Formation](week08.md) · [All notebooks](notebooks.md) · [Home](index.md)
+<p class="backlinks"><a href="{{ '/week08/' | relative_url }}">← Week08</a> · <a href="{{ '/notebooks/' | relative_url }}">All notebooks</a> · <a href="{{ '/' | relative_url }}">Home</a></p>

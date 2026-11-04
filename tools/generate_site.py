@@ -100,6 +100,23 @@ def fm(title: str, **extra) -> str:
     return "\n".join(lines)
 
 
+def u(path: str) -> str:
+    """A final, baseurl-aware site URL resolved by Jekyll at build time."""
+    return "{{ '" + path + "' | relative_url }}"
+
+
+def html_text(s: str) -> str:
+    """Plain, HTML-safe text for use inside raw HTML blocks (hero, cards)."""
+    s = s.replace("**", "").replace("`", "")
+    return s.replace("&", "&amp;")
+
+
+def backlinks(*pairs: tuple[str, str]) -> str:
+    """A styled footer nav bar from (label, site-path) pairs."""
+    inner = " \u00b7 ".join(f'<a href="{u(href)}">{label}</a>' for label, href in pairs)
+    return f'<p class="backlinks">{inner}</p>'
+
+
 def nb_links(rel_path: str) -> str:
     return (
         f"[View on GitHub]({GH_BLOB}/{rel_path}) · "
@@ -118,8 +135,8 @@ def main() -> None:
         f.unlink()
     weeks = sorted(p for p in ROOT.glob("Week*") if p.is_dir())
 
-    week_rows: list[str] = []
-    all_nb: list[tuple[str, str, str, str]] = []   # (week, title, page_slug, rel_path)
+    week_meta: list[tuple[str, str, int]] = []       # (Week name, topic, n notebooks)
+    all_nb: list[tuple[str, str, str, str]] = []     # (week, title, page_slug, rel_path)
 
     for wk in weeks:
         wtitle, wsummary = readme_title_summary(wk)
@@ -127,7 +144,7 @@ def main() -> None:
         wk_slug = wk.name.lower()
 
         # --- per-week page ---
-        page = [fm(wtitle, nav_order=wk.name)]
+        page = [fm(wtitle)]
         page.append(f"{wsummary}\n" if wsummary else "")
         page.append(f"[Browse this week on GitHub]({GH_TREE}/{wk.name})\n")
         if notebooks:
@@ -136,7 +153,7 @@ def main() -> None:
                 ntitle, ndesc = notebook_info(nb)
                 nslug = f"{wk_slug}-{slugify(nb.stem)}"
                 rel = f"{wk.name}/{nb.name}"
-                page.append(f"### [{ntitle}](notebooks/{nslug}.md)\n")
+                page.append(f"### [{ntitle}]({u('/notebooks/' + nslug + '/')})\n")
                 if ndesc:
                     page.append(f"{ndesc}\n")
                 page.append(f"{nb_links(rel)}\n")
@@ -144,56 +161,80 @@ def main() -> None:
 
                 # --- per-notebook page ---
                 npage = [fm(ntitle, week=wk.name)]
-                npage.append(f"*{wk.name} · {count_code_cells(nb)} code cells*\n")
+                npage.append(f"*{wk.name} \u00b7 {count_code_cells(nb)} code cells*\n")
                 if ndesc:
                     npage.append(f"{ndesc}\n")
                 npage.append("## Open this notebook\n")
-                npage.append(f"- [View on GitHub]({GH_BLOB}/{rel}) — rendered with outputs")
-                npage.append(f"- [Open in nbviewer]({NBVIEWER}/{rel}) — clean static render")
-                npage.append(f"- [Open in Google Colab]({COLAB}/{rel}) — run it in the browser")
+                npage.append(f"- [View on GitHub]({GH_BLOB}/{rel}) \u2014 rendered with outputs")
+                npage.append(f"- [Open in nbviewer]({NBVIEWER}/{rel}) \u2014 clean static render")
+                npage.append(f"- [Open in Google Colab]({COLAB}/{rel}) \u2014 run it in the browser")
                 npage.append(f"- [Download .ipynb]({RAW}/{rel})\n")
-                npage.append(f"[← {wtitle}]({wk_slug}.md) · [All notebooks](notebooks.md) · [Home](index.md)\n")
+                npage.append(backlinks((f"\u2190 {wk.name}", "/" + wk_slug + "/"),
+                                       ("All notebooks", "/notebooks/"), ("Home", "/")))
                 (NB_DIR / f"{nslug}.md").write_text("\n".join(npage), encoding="utf-8")
 
-        page.append("\n[← Home](index.md)\n")
+        page.append(backlinks(("\u2190 Home", "/"), ("All notebooks", "/notebooks/")))
         (DOCS / f"{wk_slug}.md").write_text("\n".join(page), encoding="utf-8")
 
-        topic = wtitle.split("—", 1)[-1].strip() if "—" in wtitle else wtitle
-        week_rows.append(f"| [{wk.name}]({wk_slug}.md) | {topic} | {len(notebooks)} |")
+        topic = wtitle.split("\u2014", 1)[-1].strip() if "\u2014" in wtitle else wtitle
+        week_meta.append((wk.name, topic, len(notebooks)))
 
     # --- notebooks index ---
     nbindex = [fm("All Notebooks"), "Every runnable notebook in the course, grouped by week.\n"]
     cur = None
     for week, title, slug, rel in all_nb:
         if week != cur:
-            nbindex.append(f"\n### [{week}]({week.lower()}.md)\n")
+            nbindex.append(f"\n### [{week}]({u('/' + week.lower() + '/')})\n")
             cur = week
-        nbindex.append(f"- [{title}](notebooks/{slug}.md) — "
-                       f"[GitHub]({GH_BLOB}/{rel}) · [nbviewer]({NBVIEWER}/{rel}) · [Colab]({COLAB}/{rel})")
-    nbindex.append("\n[← Home](index.md)\n")
+        nbindex.append(f"- [{title}]({u('/notebooks/' + slug + '/')}) \u2014 "
+                       f"[GitHub]({GH_BLOB}/{rel}) \u00b7 [nbviewer]({NBVIEWER}/{rel}) \u00b7 [Colab]({COLAB}/{rel})")
+    nbindex.append("\n" + backlinks(("\u2190 Home", "/")))
     (DOCS / "notebooks.md").write_text("\n".join(nbindex), encoding="utf-8")
 
-    # --- home ---
-    main_title, main_summary = readme_title_summary(ROOT)
-    home = [fm(main_title)]
-    home.append(f"{main_summary}\n" if main_summary else "")
-    home.append(f"**Instructor:** {INSTRUCTOR}\n")
-    home.append("## Weeks\n")
-    home.append("| Week | Topic | Notebooks |")
-    home.append("|------|-------|-----------|")
-    home.extend(week_rows)
-    home.append("\n## Explore\n")
-    home.append("- [All notebooks](notebooks.md) — the full runnable index")
-    home.append("- [Team project](project.md) — framework, datasets, and topic discussions")
-    home.append("- [About / syllabus](about.md) — overview and tools")
-    home.append(f"\n[View the repository on GitHub](https://github.com/{REPO})\n")
+    # --- home (hero + card grid) ---
+    _, main_summary = readme_title_summary(ROOT)
+    cards = ['<div class="card-grid">']
+    for name, topic, n in week_meta:
+        label = f"{name[:4]} {name[4:]}"             # 'Week11' -> 'Week 11'
+        plural = "s" if n != 1 else ""
+        cards.append(
+            f'<a class="card" href="{u("/" + name.lower() + "/")}">'
+            f'<span class="card-week">{label}</span>'
+            f'<span class="card-topic">{html_text(topic)}</span>'
+            f'<span class="card-meta">{n} notebook{plural}</span></a>'
+        )
+    cards.append('</div>')
+    home = [
+        fm("Course Home", hero="true"),
+        '<section class="hero">',
+        '  <p class="eyebrow">BIOENG 1340/2340 \u00b7 University of Pittsburgh \u00b7 Fall 2026</p>',
+        '  <h1 class="hero-title">Medical Image Processing &amp; Analysis</h1>',
+        f'  <p class="hero-sub">{html_text(main_summary)}</p>',
+        f'  <p class="hero-by">Instructor \u00b7 {INSTRUCTOR}</p>',
+        '  <div class="hero-cta">',
+        f'    <a class="btn btn-primary" href="{u("/notebooks/")}">Explore notebooks \u2192</a>',
+        f'    <a class="btn" href="{u("/project/")}">Team project</a>',
+        f'    <a class="btn" href="https://github.com/{REPO}">GitHub \u2197</a>',
+        '  </div>',
+        '</section>',
+        '',
+        '<h2 class="section-title">Weeks</h2>',
+        "\n".join(cards),
+        '<div class="explore">',
+        f'  <a class="pill" href="{u("/notebooks/")}">All notebooks</a>',
+        f'  <a class="pill" href="{u("/project/")}">Team project</a>',
+        f'  <a class="pill" href="{u("/about/")}">About / syllabus</a>',
+        f'  <a class="pill" href="https://github.com/{REPO}">Repository \u2197</a>',
+        '</div>',
+    ]
     (DOCS / "index.md").write_text("\n".join(home), encoding="utf-8")
 
     # --- project ---
     proj_md = (ROOT / "Project" / "README.md").read_text(encoding="utf-8")
     proj_body = "\n".join(l for l in proj_md.splitlines() if not l.startswith("# "))
     proj = [fm("Team Project"), proj_body.strip(),
-            f"\n[Browse the project folder on GitHub]({GH_TREE}/Project)\n", "[← Home](index.md)\n"]
+            f"\n[Browse the project folder on GitHub]({GH_TREE}/Project)\n",
+            backlinks(("\u2190 Home", "/"))]
     (DOCS / "project.md").write_text("\n".join(proj), encoding="utf-8")
 
     # --- about ---
@@ -203,14 +244,14 @@ def main() -> None:
     about.append("## Course arc\n")
     for wk in weeks:
         wtitle, _ = readme_title_summary(wk)
-        topic = wtitle.split("—", 1)[-1].strip() if "—" in wtitle else wtitle
-        about.append(f"- **{wk.name}** — {topic}")
+        topic = wtitle.split("\u2014", 1)[-1].strip() if "\u2014" in wtitle else wtitle
+        about.append(f"- **{wk.name}** \u2014 {topic}")
     about.append("\n## Tools\n")
     about.append("- **Python** (NumPy, SciPy, scikit-image, SimpleITK, matplotlib) in Jupyter notebooks")
     about.append("- **MATLAB** for DICOM I/O, filtering, and VTK export")
     about.append("- **ITK-SNAP** (segmentation) and **ParaView** (3-D visualization)")
     about.append(f"\n[View the repository on GitHub](https://github.com/{REPO})\n")
-    about.append("[← Home](index.md)\n")
+    about.append(backlinks(("\u2190 Home", "/")))
     (DOCS / "about.md").write_text("\n".join(about), encoding="utf-8")
 
     print(f"Generated {len(weeks)} week pages, {len(all_nb)} notebook pages, plus home/project/about.")

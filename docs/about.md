@@ -28,4 +28,4 @@ Course materials and coursework for **BIOENG 1340/2340 (Fall 2026)**: medical im
 
 [View the repository on GitHub](https://github.com/menonpg/BIOENG1340-2026)
 
-[← Home](index.md)
+<p class="backlinks"><a href="{{ '/' | relative_url }}">← Home</a></p>

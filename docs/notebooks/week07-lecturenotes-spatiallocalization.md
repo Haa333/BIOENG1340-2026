@@ -14,4 +14,4 @@ Lecture notes (from the Oct 6 session). We go from **slice selection** to full *
 - [Open in Google Colab](https://colab.research.google.com/github/menonpg/BIOENG1340-2026/blob/main/Week07/LectureNotes_SpatialLocalization.ipynb) — run it in the browser
 - [Download .ipynb](https://raw.githubusercontent.com/menonpg/BIOENG1340-2026/main/Week07/LectureNotes_SpatialLocalization.ipynb)
 
-[← Week 07 — Spatial Localization, Pulse Sequences & k-space](week07.md) · [All notebooks](notebooks.md) · [Home](index.md)
+<p class="backlinks"><a href="{{ '/week07/' | relative_url }}">← Week07</a> · <a href="{{ '/notebooks/' | relative_url }}">All notebooks</a> · <a href="{{ '/' | relative_url }}">Home</a></p>

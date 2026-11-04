@@ -14,4 +14,4 @@ The quiz asks to *answer any 5 for 50 points*. For completeness, **all 7 questio
 - [Open in Google Colab](https://colab.research.google.com/github/menonpg/BIOENG1340-2026/blob/main/Week06/MRI_Quiz_Solutions.ipynb) — run it in the browser
 - [Download .ipynb](https://raw.githubusercontent.com/menonpg/BIOENG1340-2026/main/Week06/MRI_Quiz_Solutions.ipynb)
 
-[← Week 06 — MRI Image Formation: Quiz Solutions](week06.md) · [All notebooks](notebooks.md) · [Home](index.md)
+<p class="backlinks"><a href="{{ '/week06/' | relative_url }}">← Week06</a> · <a href="{{ '/notebooks/' | relative_url }}">All notebooks</a> · <a href="{{ '/' | relative_url }}">Home</a></p>

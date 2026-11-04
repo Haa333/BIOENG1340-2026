@@ -4,17 +4,17 @@ description: >-
   (Fall 2026): MRI and CT/X-ray image formation, reconstruction, and analysis.
   Instructor: Prahlad Menon, PhD, PMP.
 author: Prahlad Menon, PhD, PMP
-theme: jekyll-theme-cayman
 baseurl: "/BIOENG1340-2026"
 url: "https://menonpg.github.io"
 
-# Pretty, extensionless URLs and auto-rewrite of .md links to .html
 permalink: pretty
-plugins:
-  - jekyll-relative-links
-relative_links:
-  enabled: true
-  collections: false
+
+# Apply the custom layout to every generated page.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
 
 exclude:
   - "*.py"

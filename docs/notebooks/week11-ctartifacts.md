@@ -14,4 +14,4 @@ Real CT images are rarely perfect. This notebook simulates the artifacts discuss
 - [Open in Google Colab](https://colab.research.google.com/github/menonpg/BIOENG1340-2026/blob/main/Week11/CTArtifacts.ipynb) — run it in the browser
 - [Download .ipynb](https://raw.githubusercontent.com/menonpg/BIOENG1340-2026/main/Week11/CTArtifacts.ipynb)
 
-[← Week 11 — CT Artifacts, Contrast Agents, Nuclear Imaging & Dosimetry](week11.md) · [All notebooks](notebooks.md) · [Home](index.md)
+<p class="backlinks"><a href="{{ '/week11/' | relative_url }}">← Week11</a> · <a href="{{ '/notebooks/' | relative_url }}">All notebooks</a> · <a href="{{ '/' | relative_url }}">Home</a></p>
