@@ -111,6 +111,11 @@ def nb_links(rel_path: str) -> str:
 
 def main() -> None:
     NB_DIR.mkdir(parents=True, exist_ok=True)
+    # Prune previously generated pages so moved/renamed notebooks leave no stale files.
+    for f in NB_DIR.glob("*.md"):
+        f.unlink()
+    for f in DOCS.glob("week*.md"):
+        f.unlink()
     weeks = sorted(p for p in ROOT.glob("Week*") if p.is_dir())
 
     week_rows: list[str] = []

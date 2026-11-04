@@ -14,4 +14,4 @@ Three ways to turn a **sinogram** (projections at many angles) back into an imag
 - [Open in Google Colab](https://colab.research.google.com/github/menonpg/BIOENG1340-2026/blob/main/Week10/ReconstructionMethods_Compare.ipynb) — run it in the browser
 - [Download .ipynb](https://raw.githubusercontent.com/menonpg/BIOENG1340-2026/main/Week10/ReconstructionMethods_Compare.ipynb)
 
-[← Week 10 — CT Image Formation, Reconstruction & Artifacts](week10.md) · [All notebooks](notebooks.md) · [Home](index.md)
+[← Week 10 — CT Image Formation & Reconstruction](week10.md) · [All notebooks](notebooks.md) · [Home](index.md)

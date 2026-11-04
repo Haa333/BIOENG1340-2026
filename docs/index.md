@@ -19,7 +19,8 @@ Course materials and coursework for **BIOENG 1340/2340 (Fall 2026)**: medical im
 | [Week07](week07.md) | Spatial Localization, Pulse Sequences & k-space | 2 |
 | [Week08](week08.md) | X-ray & CT Image Formation | 2 |
 | [Week09](week09.md) | Algebraic CT Reconstruction & Study Design | 2 |
-| [Week10](week10.md) | CT Image Formation, Reconstruction & Artifacts | 5 |
+| [Week10](week10.md) | CT Image Formation & Reconstruction | 3 |
+| [Week11](week11.md) | CT Artifacts, Contrast Agents, Nuclear Imaging & Dosimetry | 4 |
 
 ## Explore
 
